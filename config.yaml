@@ -1,0 +1,70 @@
+# Every tunable knob of the pipeline lives here.
+
+download:
+  format: "bv*[vcodec^=avc1][height<=720]+ba[ext=m4a]/b[ext=mp4]/b"
+
+shots:
+  threshold: 0.5            # TransNetV2 transition probability
+  min_shot_seconds: 0.4     # shorter shots are merged into a neighbour ...
+  merge_hist_dist: 0.3      # ... only if their colour histograms match (Bhattacharyya distance)
+
+keyframes:
+  max_side: 640
+
+transcript:
+  parakeet_model: mlx-community/parakeet-tdt-0.6b-v3
+  whisper_model: mlx-community/whisper-large-v3-turbo
+  chunk_seconds: 120
+
+faces:
+  sample_interval: 1.0      # seconds between sampled frames (global grid)
+  det_size: 640
+  det_thresh: 0.5
+  providers: [CPUExecutionProvider]   # set to [] to let onnxruntime pick (CoreML)
+  crop_margin: 0.25
+  crop_max_side: 256
+  anchor:                   # faces used to build identities
+    min_score: 0.65
+    min_size: 48
+    min_sharpness: 50
+    max_yaw_ratio: 0.5      # |nose - eye midpoint| / eye distance  (~40 deg)
+  weak:                     # faces that only inherit their track's identity
+    min_score: 0.5
+    min_size: 32
+  track:
+    min_iou: 0.3
+    min_cos: 0.3
+  cluster:
+    distance_threshold: 0.55  # average-linkage cosine distance (similarity >= 0.45)
+    rescue_min_cos: 0.45
+    merge_min_cos: 0.30       # merge groups whose centroids are this close and never share a frame
+                              # (same person split by lighting/pose; different people measured <= 0.20)
+    weak_rescue_min_cos: 0.55 # profile/blurry-only tracks join a group only above this (spot-checked ~90%+ precise)
+    min_detections: 3         # clusters with 1 track and fewer detections are dropped
+
+embed:
+  siglip_model: ViT-B-16-SigLIP2
+  siglip_pretrained: webli
+  text_model: BAAI/bge-small-en-v1.5
+
+scenes:
+  visual_window_shots: 6       # shots on each side searched for a matching camera setup
+  text_window_seconds: 60
+  weights: {visual: 0.35, text: 0.45, people: 0.20}
+  min_scene_seconds: 30
+  max_scene_seconds: 300
+  target_scene_seconds: 90
+  chapter_snap_seconds: 3
+  chapter_bonus: 0.5             # depth bonus (in std units) near YouTube chapter starts
+  establishing_max_shots: 4      # cuts move back over faceless establishing shots (exteriors) ...
+  establishing_max_seconds: 15   # ... so they open the scene they introduce
+  refine_candidates: 60
+  candidate_spacing_seconds: 15
+
+gemini:
+  media_resolution: LOW
+  tpm_budget: 230000        # stay under the ~250K tokens/minute free-tier limit
+  window_seconds: 600       # descriptions: batch whole scenes into ~10 min requests
+  gallery_crops: 4
+  max_gallery_groups: 12
+  transcript_chars_per_scene: 4000

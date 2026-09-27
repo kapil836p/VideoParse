@@ -1,0 +1,37 @@
+[project]
+name = "videoparse"
+version = "0.1.0"
+description = "YouTube video -> shots, thematic scenes, scene descriptions and face groups"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-genai>=2.25.0",
+    "insightface>=2.0",
+    "jinja2>=3.1.6",
+    "mlx-whisper>=0.4.3",
+    "numpy>=2.5.3",
+    "onnxruntime>=1.30.0",
+    "open-clip-torch>=3.3.0",
+    "opencv-python>=5.0.0.93",
+    "pandas>=3.0.6",
+    "parakeet-mlx>=0.5.2",
+    "pyarrow>=25.0.1",
+    "pydantic>=2.13.5",
+    "python-dotenv>=1.2.3",
+    "pyyaml>=6.0.3",
+    "scenedetect>=0.7.1",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "sentence-transformers>=6.1.0",
+    "torch>=2.14.0",
+    "tqdm>=4.70.1",
+    "transnetv2-pytorch==1.0.5",
+    "yt-dlp[default]>=2026.8.19",
+]
+
+[project.scripts]
+videoparse = "videoparse.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"

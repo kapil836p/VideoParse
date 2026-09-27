@@ -1,0 +1,112 @@
+# Folder structure (one folder per face group per scene)
+faces
+├── scene_000
+│   ├── group10
+│   ├── group16
+│   ├── group3
+│   ├── group4
+│   └── group8
+├── scene_001
+│   ├── group1
+│   ├── group4
+│   └── group5
+├── scene_002
+│   ├── group1
+│   ├── group3
+│   ├── group4
+│   ├── group6
+│   └── group7
+├── scene_003
+│   ├── group1
+│   └── group6
+├── scene_004
+│   ├── group1
+│   ├── group3
+│   ├── group4
+│   └── group6
+├── scene_005
+│   ├── group1
+│   ├── group13
+│   ├── group17
+│   └── group9
+├── scene_006
+│   ├── group11
+│   ├── group12
+│   ├── group19
+│   ├── group5
+│   └── group8
+├── scene_007
+│   ├── group1
+│   ├── group13
+│   ├── group18
+│   ├── group2
+│   ├── group20
+│   └── group9
+├── scene_008
+│   ├── group12
+│   ├── group5
+│   └── group8
+├── scene_009
+│   ├── group11
+│   ├── group5
+│   └── group8
+├── scene_010
+│   ├── group1
+│   ├── group18
+│   └── group2
+├── scene_011
+│   ├── group1
+│   └── group5
+├── scene_012
+│   ├── group1
+│   └── group15
+├── scene_013
+│   ├── group10
+│   ├── group3
+│   └── group4
+├── scene_014
+│   ├── group1
+│   └── group2
+├── scene_015
+│   ├── group11
+│   ├── group12
+│   └── group5
+├── scene_016
+│   ├── group1
+│   ├── group3
+│   └── group7
+├── scene_017
+│   ├── group1
+│   ├── group2
+│   ├── group6
+│   └── group7
+└── scene_018
+    ├── group1
+    ├── group14
+    ├── group3
+    ├── group4
+    ├── group5
+    ├── group6
+    ├── group7
+    └── group8
+
+# File counts per folder (file name = timecode in seconds, e.g. t0452.00.jpg)
+scene_000: group3: 24, group4: 14, group8: 17, group10: 18, group16: 21
+scene_001: group1: 35, group4: 39, group5: 8
+scene_002: group1: 65, group3: 31, group4: 31, group6: 22, group7: 19
+scene_003: group1: 32, group6: 24
+scene_004: group1: 27, group3: 40, group4: 24, group6: 5
+scene_005: group1: 31, group9: 39, group13: 29, group17: 17
+scene_006: group5: 24, group8: 23, group11: 17, group12: 7, group19: 6
+scene_007: group1: 32, group2: 26, group9: 10, group13: 11, group18: 9, group20: 2
+scene_008: group5: 15, group8: 11, group12: 14
+scene_009: group5: 23, group8: 11, group11: 20
+scene_010: group1: 19, group2: 22, group18: 3
+scene_011: group1: 29, group5: 26
+scene_012: group1: 42, group15: 34
+scene_013: group3: 14, group4: 18, group10: 28
+scene_014: group1: 72, group2: 21
+scene_015: group5: 24, group11: 8, group12: 21
+scene_016: group1: 23, group3: 28, group7: 15
+scene_017: group1: 110, group2: 85, group6: 32, group7: 33
+scene_018: group1: 66, group3: 9, group4: 9, group5: 10, group6: 18, group7: 16, group8: 9, group14: 35
